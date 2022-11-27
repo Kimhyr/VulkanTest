@@ -5,6 +5,18 @@
 
 #include "Definitions.hpp"
 
+namespace U {
+    vk::Result createDebugUtilsMessengerEXT(
+            vk::Instance instance, const vk::DebugUtilsMessengerCreateInfoEXT *createInfo,
+            const vk::AllocationCallbacks *allocator, vk::DebugUtilsMessengerEXT *debugMessenger
+    );
+
+    Void destroyDebugUtilsMessengerEXT(
+            vk::Instance instance, vk::DebugUtilsMessengerEXT debugMessenger,
+            const vk::AllocationCallbacks *allocator
+    );
+}; // namespace U
+
 class TriangleApp {
 public:
 #ifdef NDEBUG
@@ -30,6 +42,9 @@ public:
 private:
     vkfw::Window window;
     vk::Instance vulkan;
+#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+    vk::DebugUtilsMessengerEXT debugMessenger;
+#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
     UInt64 count;
 
 private:
@@ -38,15 +53,28 @@ private:
     inline Void initVulkan();
 
 #ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
-    static inline Bool checkValidationLayerSupport();
+    inline Void initDebugMessenger();
 #endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+
+#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+    inline static inline Bool checkValidationLayerSupport();
+#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+
+    inline static std::vector<const Char8 *> getRequiredExtensions();
 
 private:
     static Void error_window_callback(UInt32 errorCode, const Char8 *description);
 
     static Void key_window_callback(
-            const vkfw::Window &window, vkfw::Key key, UInt32 scancode, vkfw::KeyAction action,
+            const vkfw::Window &window, vkfw::Key key,
+            UInt32 scancode, vkfw::KeyAction action,
             const vkfw::ModifierKeyFlags &modifiers
+    );
+
+    template<typename UserDataT>
+    static VKAPI_ATTR vk::Bool32 VKAPI_CALL debug_callback(
+            vk::DebugUtilsMessageSeverityFlagBitsEXT severity, vk::DebugUtilsMessageTypeFlagsEXT type,
+            const vk::DebugUtilsMessengerCallbackDataEXT *callbackData, UserDataT userData
     );
 };
 

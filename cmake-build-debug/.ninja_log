@@ -1,0 +1,10 @@
+# ninja log v5
+3	7312	6912740906005144	CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj	d1b983fbb7cfc969
+15	24845	6912740941595416	CMakeFiles/VulkanTest.dir/Source/TriangleApp.cpp.obj	3382cf87a5a18d70
+6	5819	6912746649173963	build.ninja	2addd2e2a2d477a4
+24845	33911	6912741126013649	../Output/VulkanTest.exe	a47d2b17ebf08d77
+0	26	0	clean	819d730cc5903e68
+2	12270	6912746649173963	build.ninja	2addd2e2a2d477a4
+12	5501	6912746767129157	CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj	d1b983fbb7cfc969
+2	6614	6912746781043882	CMakeFiles/VulkanTest.dir/Source/TriangleApp.cpp.obj	3382cf87a5a18d70
+6614	7863	6912746800313096	../Output/VulkanTest.exe	a47d2b17ebf08d77
