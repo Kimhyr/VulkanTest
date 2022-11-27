@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "e:/Projects/VulkanTest/Source/cmake-build-debug"
+			"value" : "e:/Projects/VulkanTest/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -623,7 +623,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "E:/Projects/VulkanTest/Source"
+			"value" : "E:/Projects/VulkanTest"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1239,7 +1239,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "E:/Projects/VulkanTest/Source/cmake-build-debug"
+			"value" : "E:/Projects/VulkanTest/cmake-build-debug"
 		},
 		{
 			"name" : "VulkanTest_IS_TOP_LEVEL",
@@ -1263,7 +1263,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "E:/Projects/VulkanTest/Source"
+			"value" : "E:/Projects/VulkanTest"
 		}
 	],
 	"kind" : "cache",
