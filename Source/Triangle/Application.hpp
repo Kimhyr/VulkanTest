@@ -6,65 +6,63 @@
 #include "../Definitions.hpp"
 
 namespace Triangle {
-    class Application {
-    public:
+  class Application {
+  public:
 #ifdef NDEBUG
-        static constexpr const Bool EnableValidationLayers = false;
+    // static constexpr const Bool EnableValidationLayers = false;
 #else // NDEBUG
 #define TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
-        static constexpr const UInt32 ValidationLayerCount = 1;
-        static constexpr const Char8 *ValidationLayers[] = {
-                "VK_LAYER_KHRONOS_validation"
-        };
-#endif // NDEBUG
-        static constexpr const Char8 AppName[] = "Triangle App";
-        static constexpr const UInt32 WindowWidth = 1920 / 4;
-        static constexpr const UInt32 WindowHeight = 1080 / 4;
-
-    public:
-        Application();
-
-        Void run();
-
-        inline Void stop();
-
-    private:
-        vkfw::Window window;
-        vk::Instance vulkan;
-#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
-        vk::DebugUtilsMessengerEXT debugMessenger;
-#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
-        UInt64 count;
-
-    private:
-        inline Void initWindow();
-
-        inline Void initVulkan();
-
-#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
-        inline Void initDebugMessenger();
-#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
-
-#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
-        inline static Bool checkValidationLayerSupport();
-#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
-
-        inline static std::vector<const Char8 *> getRequiredExtensions();
-
-    private:
-        static Void error_window_callback(UInt32 errorCode, const Char8 *description);
-
-        static Void key_window_callback(
-                const vkfw::Window &window, vkfw::Key key,
-                UInt32 scancode, vkfw::KeyAction action,
-                const vkfw::ModifierKeyFlags &modifiers
-        );
-
-        VKAPI_ATTR static VkBool32 VKAPI_CALL debug_callback(
-                VkDebugUtilsMessageSeverityFlagBitsEXT severity, VkDebugUtilsMessageTypeFlagsEXT type,
-                const VkDebugUtilsMessengerCallbackDataEXT *callbackData, Void *userData
-        );
+    static constexpr const UInt32 ValidationLayerCount = 1;
+    static constexpr const Char8 *ValidationLayers[] = {
+        "VK_LAYER_KHRONOS_validation"
     };
+#endif // NDEBUG
+    static constexpr const Char8 AppName[] = "Triangle App";
+    static constexpr const UInt32 WindowWidth = 1920 / 4;
+    static constexpr const UInt32 WindowHeight = 1080 / 4;
+
+  public:
+    Application();
+
+    Void run();
+
+    inline Void stop();
+
+  private:
+    vkfw::Window window;
+    vk::Instance vulkan;
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
+    vk::DebugUtilsMessengerEXT debugMessenger;
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
+    UInt64 count;
+
+  private:
+    inline Void initWindow();
+
+    inline Void initVulkan();
+
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
+    inline Void initDebugMessenger();
+
+    inline static Bool checkValidationLayerSupport();
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
+
+    inline static std::vector<const Char8 *> getRequiredExtensions();
+
+  private:
+    static Void error_window_callback(UInt32 errorCode, const Char8 *description);
+
+    static Void key_window_callback(
+        const vkfw::Window &window, vkfw::Key key,
+        UInt32 scancode, vkfw::KeyAction action,
+        const vkfw::ModifierKeyFlags &modifiers
+    );
+
+    VKAPI_ATTR static VkBool32 VKAPI_CALL debug_callback(
+        VkDebugUtilsMessageSeverityFlagBitsEXT severity, VkDebugUtilsMessageTypeFlagsEXT type,
+        const VkDebugUtilsMessengerCallbackDataEXT *callbackData, Void *userData
+    );
+  };
 } // namespace Triangle
 
 
