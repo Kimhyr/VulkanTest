@@ -11,7 +11,7 @@ PROJECT(VulkanTest)
 
 ADD_COMPILE_OPTIONS(-Wall -Wextra -Werror -O3)
 
-ADD_EXECUTABLE(VulkanTest Source/Main.cpp Source/Definitions.hpp Source/Triangle/Application.hpp Source/Triangle/Application.cpp Source/Utils.hpp Source/Utils.cpp)
+ADD_EXECUTABLE(VulkanTest Source/Main.cpp Source/Definitions.hpp Source/Triangle/Application.hpp Source/Triangle/Application.cpp Source/Utils/Util.cpp Source/Utils/Util.hpp)
 
 TARGET_LINK_LIBRARIES(
         VulkanTest PUBLIC

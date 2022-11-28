@@ -4,7 +4,7 @@
 #include <vulkan/vulkan.hpp>
 #include <iostream>
 
-#include "../Utils.hpp
+#include "../Utils/Util.hpp"
 
 Triangle::Application::Application()
         : count(0) {
@@ -26,36 +26,36 @@ inline Void Triangle::Application::initWindow() {
 }
 
 inline Void Triangle::Application::initVulkan() {
-#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
     if (!Triangle::Application::checkValidationLayerSupport()) {
         throw std::runtime_error("Validation layers are not available.");
     }
-#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
     vk::ApplicationInfo appInfo(
             Triangle::Application::AppName, VK_MAKE_VERSION(1, 0, 0),
             "Undefined", VK_MAKE_VERSION(0, 0, 0),
             VK_API_VERSION_1_0
     );
     std::vector<const Char8 *> exts = Triangle::Application::getRequiredExtensions();
-#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
     vk::InstanceCreateInfo vkCreateInfo(
             vk::InstanceCreateFlagBits::eEnumeratePortabilityKHR,
             &appInfo, Triangle::Application::ValidationLayerCount,
             Triangle::Application::ValidationLayers, exts.size(),
             exts.data(), nil
     );
-#else // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#else // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
     vk::InstanceCreateInfo vkCreateInfo(
             vk::InstanceCreateFlagBits::eEnumeratePortabilityKHR, &appInfo, 0, nil, exts.size(), exts.data(), nil
     );
-#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
     this->vulkan = vk::createInstance(vkCreateInfo);
-#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
     this->initDebugMessenger();
-#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
 }
 
-#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
 inline Void Triangle::Application::initDebugMessenger() {
     vk::DebugUtilsMessengerCreateInfoEXT createInfo(
             {}, vk::DebugUtilsMessageSeverityFlagBitsEXT::eVerbose |
@@ -64,15 +64,16 @@ inline Void Triangle::Application::initDebugMessenger() {
                 vk::DebugUtilsMessageSeverityFlagBitsEXT::eInfo,
             vk::DebugUtilsMessageTypeFlagBitsEXT::eGeneral |
             vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation |
-            vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance, this->debug_callback
+            vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance,
+            Triangle::Application::debug_callback
     );
     if (Util::createDebugUtilsMessengerEXT(this->vulkan, &createInfo, nil, &debugMessenger) != vk::Result::eSuccess) {
         throw std::runtime_error("Failed to initiate  a debug messenger.");
     }
 }
-#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
 
-#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
 inline Bool Triangle::Application::checkValidationLayerSupport() {
     UInt32 layerCount = 0;
     switch (vk::enumerateInstanceLayerProperties(&layerCount, nil)) {
@@ -101,16 +102,16 @@ inline Bool Triangle::Application::checkValidationLayerSupport() {
 FOUND:
     return true;
 }
-#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
 
 inline std::vector<const Char8 *> Triangle::Application::getRequiredExtensions() {
     UInt32 gextCount = 0;
     const Char8 **gexts;
     gexts = vkfw::getRequiredInstanceExtensions(&gextCount);
     std::vector<const Char8 *> exts(gexts, gexts + gextCount);
-#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
     exts.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
-#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
     return exts;
 }
 
@@ -120,12 +121,13 @@ Void Triangle::Application::run() {
         vkfw::pollEvents();
         this->count++;
     }
+    this->stop();
 }
 
 Void Triangle::Application::stop() {
-#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
-    Util::destroyDebugUtilsMessengerEXT(this->vulkan, this->debugMessenger, nil);
-#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
+    Util::destroyDebugUtilsMessengerEXT(this->vulkan, this->debugMessenger);
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
     this->vulkan.destroy();
     this->window.destroy();
     vkfw::terminate();
@@ -145,12 +147,11 @@ Void Triangle::Application::key_window_callback(
     }
 }
 
-template<typename UserDataT>
-VKAPI_ATTR vk::Bool32 VKAPI_CALL Triangle::Application::debug_callback<UserDataT>(
-        vk::DebugUtilsMessageSeverityFlagBitsEXT severity, vk::DebugUtilsMessageTypeFlagsEXT type,
-        const vk::DebugUtilsMessengerCallbackDataEXT *callbackData, UserDataT userData
+VKAPI_ATTR VkBool32 VKAPI_CALL Triangle::Application::debug_callback(
+        VkDebugUtilsMessageSeverityFlagBitsEXT severity, VkDebugUtilsMessageTypeFlagsEXT,
+        const VkDebugUtilsMessengerCallbackDataEXT *callbackData, Void *
 ) {
-    switch (severity) {
+    switch ((vk::DebugUtilsMessageSeverityFlagBitsEXT)severity) {
     case vk::DebugUtilsMessageSeverityFlagBitsEXT::eError:
         std::cout << "[Error] ";
         break;

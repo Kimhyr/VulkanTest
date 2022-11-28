@@ -4,7 +4,6 @@
 #include <vkfw/vkfw.hpp>
 
 #include "../Definitions.hpp"
-#include "../Utils.hpp"
 
 namespace Triangle {
     class Application {
@@ -12,7 +11,7 @@ namespace Triangle {
 #ifdef NDEBUG
         static constexpr const Bool EnableValidationLayers = false;
 #else // NDEBUG
-#define TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#define TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
         static constexpr const UInt32 ValidationLayerCount = 1;
         static constexpr const Char8 *ValidationLayers[] = {
                 "VK_LAYER_KHRONOS_validation"
@@ -27,14 +26,14 @@ namespace Triangle {
 
         Void run();
 
-        Void stop();
+        inline Void stop();
 
     private:
         vkfw::Window window;
         vk::Instance vulkan;
-#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
         vk::DebugUtilsMessengerEXT debugMessenger;
-#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
         UInt64 count;
 
     private:
@@ -42,13 +41,13 @@ namespace Triangle {
 
         inline Void initVulkan();
 
-#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
         inline Void initDebugMessenger();
-#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
 
-#ifdef TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
-        inline static inline Bool checkValidationLayerSupport();
-#endif // TRIANGLE_APP_VALIDATION_LAYERS_ENABLED
+#ifdef TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
+        inline static Bool checkValidationLayerSupport();
+#endif // TRIANGLE_APPLICATION_VALIDATION_LAYERS_ENABLED
 
         inline static std::vector<const Char8 *> getRequiredExtensions();
 
@@ -61,10 +60,9 @@ namespace Triangle {
                 const vkfw::ModifierKeyFlags &modifiers
         );
 
-        template<typename UserDataT>
-        static VKAPI_ATTR vk::Bool32 VKAPI_CALL debug_callback(
-                vk::DebugUtilsMessageSeverityFlagBitsEXT severity, vk::DebugUtilsMessageTypeFlagsEXT type,
-                const vk::DebugUtilsMessengerCallbackDataEXT *callbackData, UserDataT userData
+        VKAPI_ATTR static VkBool32 VKAPI_CALL debug_callback(
+                VkDebugUtilsMessageSeverityFlagBitsEXT severity, VkDebugUtilsMessageTypeFlagsEXT type,
+                const VkDebugUtilsMessengerCallbackDataEXT *callbackData, Void *userData
         );
     };
 } // namespace Triangle

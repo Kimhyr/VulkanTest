@@ -1,4 +1,4 @@
-#include "Utils.hpp
+#include "Util.hpp"
 
 vk::Result Util::createDebugUtilsMessengerEXT(
         vk::Instance instance, const vk::DebugUtilsMessengerCreateInfoEXT *createInfo,
@@ -7,7 +7,10 @@ vk::Result Util::createDebugUtilsMessengerEXT(
     auto proc = (PFN_vkCreateDebugUtilsMessengerEXT)
             instance.getProcAddr("vkCreateDebugUtilsMessengerEXT");
     return proc != nil
-           ? func(instance, createInfo, allocator, debugMessenger)
+           ? (vk::Result)proc(
+                    instance, (VkDebugUtilsMessengerCreateInfoEXT *)createInfo, (VkAllocationCallbacks *)allocator,
+                    (VkDebugUtilsMessengerEXT *)debugMessenger
+            )
            : vk::Result::eErrorExtensionNotPresent;
 }
 
@@ -16,8 +19,8 @@ Void Util::destroyDebugUtilsMessengerEXT(
         const vk::AllocationCallbacks *allocator
 ) {
     auto proc = (PFN_vkDestroyDebugUtilsMessengerEXT)
-            instance.getProcAddr("vkCreateDebugUtilsMessengerEXT");
+            instance.getProcAddr("vkDestroyDebugUtilsMessengerEXT");
     if (proc != nil) {
-        func(instance, debugMessenger, allocator):
+        proc(instance, debugMessenger, (VkAllocationCallbacks *)allocator);
     }
 }

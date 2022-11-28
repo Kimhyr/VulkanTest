@@ -1,5 +1,9 @@
-#ifndef VULKANTEST_UTILS_HPP
-#define VULKANTEST_UTILS_HPP
+#ifndef VULKANTEST_UTILS_UTIL_HPP
+#define VULKANTEST_UTILS_UTIL_HPP
+
+#include <vulkan/vulkan.hpp>
+
+#include "../Definitions.hpp"
 
 namespace Util {
     vk::Result createDebugUtilsMessengerEXT(
@@ -9,8 +13,9 @@ namespace Util {
 
     Void destroyDebugUtilsMessengerEXT(
             vk::Instance instance, vk::DebugUtilsMessengerEXT debugMessenger,
-            const vk::AllocationCallbacks *allocator
+            const vk::AllocationCallbacks *allocator = nil
     );
 } // namespace Util
 
-#endif // VULKANTEST_UTILS_HPP
+
+#endif // VULKANTEST_UTILS_UTIL_HPP

@@ -1,6 +1,20 @@
 # ninja log v5
-12	5501	6912746767129157	CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj	d1b983fbb7cfc969
+2	5893	6913046282385938	CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj	4330f0633f33394e
 2	6614	6912746781043882	CMakeFiles/VulkanTest.dir/Source/TriangleApp.cpp.obj	3382cf87a5a18d70
-2	12270	6913025432023721	build.ninja	2addd2e2a2d477a4
+762	4488	6913051505709248	build.ninja	2addd2e2a2d477a4
 6614	7863	6912746800313096	../Output/VulkanTest.exe	a47d2b17ebf08d77
-0	26	0	clean	819d730cc5903e68
+1	19	0	clean	819d730cc5903e68
+2	4716	6913042359477817	CMakeFiles/VulkanTest.dir/Source/Utils/Util.cpp.obj	7a48b489e11f3279
+4	4537	6913051616688110	CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj	4330f0633f33394e
+3	6347	6913058796572324	CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj	4330f0633f33394e
+14	8959	6913058815628558	CMakeFiles/VulkanTest.dir/Source/Triangle/Application.cpp.obj	3f96182a3f495db7
+8959	40104	6913059148966287	../Output/VulkanTest.exe	a7abb702ba04ceba
+2	14315	6913059515100166	CMakeFiles/VulkanTest.dir/Source/Triangle/Application.cpp.obj	3f96182a3f495db7
+14315	27337	6913059707643007	../Output/VulkanTest.exe	a7abb702ba04ceba
+13	8862	6913065194927978	CMakeFiles/VulkanTest.dir/Source/Utils/Util.cpp.obj	7a48b489e11f3279
+2	19391	6913065262242909	CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj	4330f0633f33394e
+23	19523	6913065324471276	CMakeFiles/VulkanTest.dir/Source/Triangle/Application.cpp.obj	3f96182a3f495db7
+19523	31805	6913065413170362	../Output/VulkanTest.exe	a7abb702ba04ceba
+3	14245	6913067007288743	CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj	4330f0633f33394e
+13	17125	6913067017727893	CMakeFiles/VulkanTest.dir/Source/Triangle/Application.cpp.obj	3f96182a3f495db7
+17125	28292	6913067202116946	../Output/VulkanTest.exe	a7abb702ba04ceba

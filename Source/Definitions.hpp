@@ -1,9 +1,10 @@
 #ifndef VULKANTEST_DEFINITIONS_HPP
 #define VULKANTEST_DEFINITIONS_HPP
 
-using Void = void;
 #define nil nullptr
 #define null NULL
+
+using Void = void;
 
 using Bool = bool;
 
