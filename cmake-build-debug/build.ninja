@@ -56,8 +56,15 @@ build CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj: CXX_COMPILER__VulkanTest_De
   OBJECT_DIR = CMakeFiles\VulkanTest.dir
   OBJECT_FILE_DIR = CMakeFiles\VulkanTest.dir\Source
 
-build CMakeFiles/VulkanTest.dir/Source/TriangleApp.cpp.obj: CXX_COMPILER__VulkanTest_Debug E$:/Projects/VulkanTest/Source/TriangleApp.cpp || cmake_object_order_depends_target_VulkanTest
-  DEP_FILE = CMakeFiles\VulkanTest.dir\Source\TriangleApp.cpp.obj.d
+build CMakeFiles/VulkanTest.dir/Source/Triangle/Application.cpp.obj: CXX_COMPILER__VulkanTest_Debug E$:/Projects/VulkanTest/Source/Triangle/Application.cpp || cmake_object_order_depends_target_VulkanTest
+  DEP_FILE = CMakeFiles\VulkanTest.dir\Source\Triangle\Application.cpp.obj.d
+  FLAGS = -g -Wall -Wextra -Werror -O3 -std=gnu++20
+  INCLUDES = -IE:/Projects/VulkanTest/cmake-build-debug -ID:/VulkanSDK/1.3.231.1/Include -ID:/glfw-3.3.8.bin.WIN64/include -ID:/gmtl-0.6.1/gmtl
+  OBJECT_DIR = CMakeFiles\VulkanTest.dir
+  OBJECT_FILE_DIR = CMakeFiles\VulkanTest.dir\Source\Triangle
+
+build CMakeFiles/VulkanTest.dir/Source/Utils.cpp.obj: CXX_COMPILER__VulkanTest_Debug E$:/Projects/VulkanTest/Source/Utils.cpp || cmake_object_order_depends_target_VulkanTest
+  DEP_FILE = CMakeFiles\VulkanTest.dir\Source\Utils.cpp.obj.d
   FLAGS = -g -Wall -Wextra -Werror -O3 -std=gnu++20
   INCLUDES = -IE:/Projects/VulkanTest/cmake-build-debug -ID:/VulkanSDK/1.3.231.1/Include -ID:/glfw-3.3.8.bin.WIN64/include -ID:/gmtl-0.6.1/gmtl
   OBJECT_DIR = CMakeFiles\VulkanTest.dir
@@ -71,7 +78,7 @@ build CMakeFiles/VulkanTest.dir/Source/TriangleApp.cpp.obj: CXX_COMPILER__Vulkan
 #############################################
 # Link the executable ..\Output\VulkanTest.exe
 
-build ../Output/VulkanTest.exe: CXX_EXECUTABLE_LINKER__VulkanTest_Debug CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj CMakeFiles/VulkanTest.dir/Source/TriangleApp.cpp.obj | D$:/VulkanSDK/1.3.231.1/Lib/vulkan-1.lib D$:/glfw-3.3.8.bin.WIN64/lib-mingw-w64/libglfw3.a
+build ../Output/VulkanTest.exe: CXX_EXECUTABLE_LINKER__VulkanTest_Debug CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj CMakeFiles/VulkanTest.dir/Source/Triangle/Application.cpp.obj CMakeFiles/VulkanTest.dir/Source/Utils.cpp.obj | D$:/VulkanSDK/1.3.231.1/Lib/vulkan-1.lib D$:/glfw-3.3.8.bin.WIN64/lib-mingw-w64/libglfw3.a
   FLAGS = -g
   LINK_LIBRARIES = D:/VulkanSDK/1.3.231.1/Lib/vulkan-1.lib  D:/glfw-3.3.8.bin.WIN64/lib-mingw-w64/libglfw3.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\VulkanTest.dir
