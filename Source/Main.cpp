@@ -1,10 +1,10 @@
 #include <iostream>
 
-#include "TriangleApp.hpp"
+#include "Triangle/Application.hpp"
 
 Int32 main() {
     try {
-        TriangleApp app;
+        Triangle::Application app;
         app.run();
         app.stop();
     } catch (const std::system_error &err) {

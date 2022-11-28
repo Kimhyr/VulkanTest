@@ -52,14 +52,14 @@ build cmake_object_order_depends_target_VulkanTest: phony || CMakeFiles/VulkanTe
 build CMakeFiles/VulkanTest.dir/Source/Main.cpp.obj: CXX_COMPILER__VulkanTest_Debug E$:/Projects/VulkanTest/Source/Main.cpp || cmake_object_order_depends_target_VulkanTest
   DEP_FILE = CMakeFiles\VulkanTest.dir\Source\Main.cpp.obj.d
   FLAGS = -g -Wall -Wextra -Werror -O3 -std=gnu++20
-  INCLUDES = -IE:/Projects/VulkanTest/cmake-build-debug -ID:/VulkanSDK/1.3.231.1/Include -ID:/glfw-3.3.8.bin.WIN64/include
+  INCLUDES = -IE:/Projects/VulkanTest/cmake-build-debug -ID:/VulkanSDK/1.3.231.1/Include -ID:/glfw-3.3.8.bin.WIN64/include -ID:/gmtl-0.6.1/gmtl
   OBJECT_DIR = CMakeFiles\VulkanTest.dir
   OBJECT_FILE_DIR = CMakeFiles\VulkanTest.dir\Source
 
 build CMakeFiles/VulkanTest.dir/Source/TriangleApp.cpp.obj: CXX_COMPILER__VulkanTest_Debug E$:/Projects/VulkanTest/Source/TriangleApp.cpp || cmake_object_order_depends_target_VulkanTest
   DEP_FILE = CMakeFiles\VulkanTest.dir\Source\TriangleApp.cpp.obj.d
   FLAGS = -g -Wall -Wextra -Werror -O3 -std=gnu++20
-  INCLUDES = -IE:/Projects/VulkanTest/cmake-build-debug -ID:/VulkanSDK/1.3.231.1/Include -ID:/glfw-3.3.8.bin.WIN64/include
+  INCLUDES = -IE:/Projects/VulkanTest/cmake-build-debug -ID:/VulkanSDK/1.3.231.1/Include -ID:/glfw-3.3.8.bin.WIN64/include -ID:/gmtl-0.6.1/gmtl
   OBJECT_DIR = CMakeFiles\VulkanTest.dir
   OBJECT_FILE_DIR = CMakeFiles\VulkanTest.dir\Source
 
